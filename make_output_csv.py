@@ -9,7 +9,7 @@ client = Panoptes.connect()  # login info is in sys env
 
 reduction_file = sys.argv[1]
 folder = os.path.dirname(reduction_file)
-threshold = int(sys.argv[2])
+threshold = float(sys.argv[2])
 reductions = pandas.read_csv(reduction_file)
 
 user_cache = {}  # cache user look ups to save time
@@ -24,7 +24,12 @@ for _, reduction in tqdm(reductions.iterrows(), total=reductions.shape[0]):
     votes_yes = reduction['data.yes']
     if pandas.isnull(votes_yes):
         votes_yes = 0
-    if votes_yes >= threshold:
+    votes_no = reduction['data.no']
+    if pandas.isnull(votes_no):
+        votes_no = 0
+    votes_total = votes_yes + votes_no
+    votes_fraction = votes_yes / votes_total
+    if votes_fraction > threshold:
         subject = Subject.find(reduction.subject_id)
         object_id = subject.metadata['#object_id'][1:]  # strip leading "#" from id number
         users = []
@@ -46,16 +51,12 @@ for _, reduction in tqdm(reductions.iterrows(), total=reductions.shape[0]):
                 name = name.split('@')[0]
                 if len(name) > 0:
                     users.append(name)
-        votes_no = reduction['data.no']
-        if pandas.isnull(votes_no):
-            votes_no = 0
-        votes_total = votes_yes + votes_no
         row = OrderedDict([
             ('subject_id', reduction.subject_id),
             ('object_id', object_id),
             ('votes_yes', votes_yes),
             ('votes_no', votes_no),
-            ('votes_fraction_yes', votes_yes / votes_total),
+            ('votes_fraction_yes', votes_fraction),
             ('votes_total', votes_total),
             ('volunteers_yes', users),
             ('talk_link', talk_url_base.format(reduction.subject_id))

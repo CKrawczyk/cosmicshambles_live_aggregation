@@ -8,6 +8,6 @@
 
 3) Edit `aggregation_script.sh` line 4 with name of csv export 
 
-4) Optionally edit the last number on `aggregation_script.sh` line 10 with vote count threshold for saving to the output file (useful for saving time on API calls to panoptes).  Set to `0` to keep all subjects in the output file.
+4) Optionally edit the last number on `aggregation_script.sh` line 10 with vote fraction threshold for saving to the output file (useful for saving time on API calls to panoptes).  Set to `0` to keep all subjects with at least one "yes" vote in the output file.
 
 5) Run `./aggregation_script.sh` and the output file will be named `candidates.csv` and be placed in the folder made in step 2.

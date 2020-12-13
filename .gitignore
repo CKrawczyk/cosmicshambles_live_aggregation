@@ -1,4 +1,5 @@
 test_data/
 first_export/
+*_export*/
 *_export/
 *_test.yaml

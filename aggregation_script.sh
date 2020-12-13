@@ -1,7 +1,7 @@
 set -e
 
-OUTPUT_DIR="first_export"
-CLASSIFICATION_FILE="${OUTPUT_DIR}/<name of csv file>"
+OUTPUT_DIR="fifth_export_1am_dec_13"
+CLASSIFICATION_FILE="${OUTPUT_DIR}/cosmic-shambles-supernova-hunt-classifications.csv"
 EXTRATION_FILE="${OUTPUT_DIR}/question_extractor_${OUTPUT_DIR}.csv"
 REDUCTION_FILE="${OUTPUT_DIR}/question_reducer_${OUTPUT_DIR}.csv"
 

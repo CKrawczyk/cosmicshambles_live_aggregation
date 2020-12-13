@@ -19,6 +19,7 @@ output_data = []
 nan = None  # for correct string conversion of non-logged in users
 
 talk_url_base = 'https://www.zooniverse.org/projects/dwright04/supernova-hunters/talk/subjects/{0}'
+qub_url = 'https://star.pst.qub.ac.uk/sne/ps13pi/psdb/candidate/{0}'
 
 for _, reduction in tqdm(reductions.iterrows(), total=reductions.shape[0]):
     votes_yes = reduction['data.yes']
@@ -59,7 +60,8 @@ for _, reduction in tqdm(reductions.iterrows(), total=reductions.shape[0]):
             ('votes_fraction_yes', votes_fraction),
             ('votes_total', votes_total),
             ('volunteers_yes', users),
-            ('talk_link', talk_url_base.format(reduction.subject_id))
+            ('talk_link', talk_url_base.format(reduction.subject_id)),
+            ('qub_url', qub_url.format(object_id))
         ])
         output_data.append(row)
 

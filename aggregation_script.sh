@@ -1,6 +1,6 @@
 set -e
 
-OUTPUT_DIR="fifth_export_1am_dec_13"
+OUTPUT_DIR="seventh_export_11am_dec_12"
 CLASSIFICATION_FILE="${OUTPUT_DIR}/cosmic-shambles-supernova-hunt-classifications.csv"
 EXTRATION_FILE="${OUTPUT_DIR}/question_extractor_${OUTPUT_DIR}.csv"
 REDUCTION_FILE="${OUTPUT_DIR}/question_reducer_${OUTPUT_DIR}.csv"
